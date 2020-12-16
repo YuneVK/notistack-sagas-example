@@ -1,16 +1,13 @@
 import React, { useCallback } from 'react'
-import MuiSnackbar from '@material-ui/core/Snackbar'
+import { useDispatch } from 'react-redux'
 import { SnackbarContent } from 'notistack'
 
-import useStyles from '../ui/styles'
-
-import { useDispatch } from 'react-redux'
-import Button from '@material-ui/core/Button'
+import UiSnackbar from '../components/snackbar'
+import useStyles from '../components/snackbar/styles'
 
 import { closeSnackbar } from '../services/snackbar/actions'
 
-const Snackbar = React.forwardRef((props, ref) => {
-  const { message, id } = props
+const Snackbar = React.forwardRef(({ message, id }, ref) => {
   const dispatch = useDispatch()
 
   const classes = useStyles()
@@ -21,17 +18,7 @@ const Snackbar = React.forwardRef((props, ref) => {
 
   return (
     <SnackbarContent ref={ref} className={classes.root}>
-      <MuiSnackbar
-        className={classes.container}
-        ContentProps={{ className: classes.content }}
-        open
-        message={message}
-        action={
-          <Button color="primary" onClick={handleClose}>
-            Undo
-          </Button>
-        }
-      />
+      <UiSnackbar onClose={handleClose} message={message} />
     </SnackbarContent>
   )
 })

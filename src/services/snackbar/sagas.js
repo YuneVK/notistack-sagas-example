@@ -11,15 +11,15 @@ function* enqueueSnackbarSaga(action) {
 }
 
 function* closeSnackbarSaga(action) {
-  const snackbar = yield select(getSnackbarById(action.key))
+  const snackbar = yield select(getSnackbarById(action.id))
 
-  yield put(updateSnackbarById(action.key, { ...snackbar, dismissed: true }))
+  yield put(updateSnackbarById(action.id, { ...snackbar, dismissed: true }))
 }
 
 function* removeSnackbarSaga(action) {
   const snackbars = yield select(getSnackbars)
 
-  delete snackbars[action.key]
+  delete snackbars[action.id]
 
   yield put(updateSnackbars(snackbars))
 }

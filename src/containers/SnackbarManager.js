@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { useSnackbar } from 'notistack'
@@ -19,34 +19,34 @@ const SnackbarManager = () => {
   }
 
   const removeDisplayed = id => {
-    displayed = [...displayed.filter(key => id !== key)]
+    displayed = [...displayed.filter(currId => id !== currId)]
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     notifications.forEach(
-      ({ key, message, options = {}, dismissed = false }) => {
+      ({ id, message, options = {}, dismissed = false }) => {
         if (dismissed) {
-          closeSnackbar(key)
+          closeSnackbar(id)
           return
         }
 
-        if (displayed.includes(key)) return
+        if (displayed.includes(id)) return
 
         enqueueSnackbar(message, {
-          key,
+          key: id,
           ...options,
-          onClose: (event, reason, myKey) => {
+          onClose: (event, reason, id) => {
             if (options.onClose) {
-              options.onClose(event, reason, myKey)
+              options.onClose(event, reason, id)
             }
           },
-          onExited: (_, myKey) => {
-            dispatch(removeSnackbar(myKey))
-            removeDisplayed(myKey)
+          onExited: (_, id) => {
+            dispatch(removeSnackbar(id))
+            removeDisplayed(id)
           },
         })
 
-        storeDisplayed(key)
+        storeDisplayed(id)
       },
     )
   }, [notifications, closeSnackbar, enqueueSnackbar, dispatch])

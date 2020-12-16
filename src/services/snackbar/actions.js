@@ -5,14 +5,14 @@ export const showSnackbar = snackbar => ({
   payload: snackbar,
 })
 
-export const closeSnackbar = key => ({
+export const closeSnackbar = id => ({
   type: actionTypes.CLOSE,
-  key,
+  id,
 })
 
-export const removeSnackbar = key => ({
+export const removeSnackbar = id => ({
   type: actionTypes.REMOVE,
-  key,
+  id,
 })
 
 export const updateSnackbars = snackbars => ({
@@ -23,7 +23,7 @@ export const updateSnackbars = snackbars => ({
 export const updateSnackbarById = (id, snackbar) => ({
   type: actionTypes.UPDATE,
   payload: {
-    id: id,
+    id,
     data: snackbar,
   },
 })
@@ -31,7 +31,7 @@ export const updateSnackbarById = (id, snackbar) => ({
 export const addSnackbar = (id, snackbar) => ({
   type: actionTypes.ADD,
   payload: {
-    id: id,
-    data: { ...snackbar, key: id },
+    id,
+    data: { ...snackbar, id },
   },
 })
