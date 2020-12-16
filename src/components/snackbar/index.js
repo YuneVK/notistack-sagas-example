@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button'
 
 import useStyles from './styles'
 
-const Snackbar = React.forwardRef(({ message, onClose }) => {
+const Snackbar = ({ message, onClose }) => {
   const classes = useStyles()
 
   return (
@@ -20,6 +20,6 @@ const Snackbar = React.forwardRef(({ message, onClose }) => {
       }
     />
   )
-})
+}
 
 export default Snackbar
