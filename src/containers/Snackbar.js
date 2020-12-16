@@ -1,15 +1,14 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, forwardRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { SnackbarContent } from 'notistack'
+
+import { closeSnackbar } from '../services/snackbar/actions'
 
 import UiSnackbar from '../components/snackbar'
 import useStyles from '../components/snackbar/styles'
 
-import { closeSnackbar } from '../services/snackbar/actions'
-
-const Snackbar = React.forwardRef(({ message, id }, ref) => {
+const Snackbar = forwardRef(({ message, id }, ref) => {
   const dispatch = useDispatch()
-
   const classes = useStyles()
 
   const handleClose = useCallback(() => {

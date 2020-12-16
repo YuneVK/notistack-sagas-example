@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { SnackbarProvider } from 'notistack'
 
 import store from './redux/store'
+import SnackbarManager from './containers/SnackbarManager'
 import Snackbar from './containers/Snackbar'
 import App from './App'
 
@@ -17,7 +18,9 @@ ReactDOM.render(
       }}
       content={(id, message) => <Snackbar id={id} message={message} />}
       autoHideDuration={3000}
+      maxSnack={10}
     >
+      <SnackbarManager />
       <App />
     </SnackbarProvider>
   </Provider>,

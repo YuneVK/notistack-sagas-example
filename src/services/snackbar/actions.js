@@ -1,6 +1,6 @@
 import * as actionTypes from './action-types'
 
-export const showSnackbar = snackbar => ({
+export const enqueueSnackbar = snackbar => ({
   type: actionTypes.ENQUEUE,
   payload: snackbar,
 })
@@ -16,7 +16,7 @@ export const removeSnackbar = id => ({
 })
 
 export const updateSnackbars = snackbars => ({
-  type: actionTypes.SET,
+  type: actionTypes.SET_ALL,
   payload: snackbars,
 })
 
