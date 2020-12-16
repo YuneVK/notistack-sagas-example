@@ -15,7 +15,7 @@ ReactDOM.render(
         vertical: 'bottom',
         horizontal: 'right',
       }}
-      content={(key, message) => <Snackbar id={key} message={message} />}
+      content={(id, message) => <Snackbar id={id} message={message} />}
       autoHideDuration={3000}
     >
       <App />
